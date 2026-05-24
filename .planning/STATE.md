@@ -3,10 +3,10 @@ gsd_state_version: 1.0
 milestone: v2.1
 milestone_name: Persistence & Sharing
 status: planning
-last_updated: "2026-05-24T08:22:21.313Z"
-last_activity: 2026-05-24
+last_updated: "2026-05-24T08:34:00.000Z"
+last_activity: 2026-05-24 — Roadmap created for Milestone v2.1
 progress:
-  total_phases: 0
+  total_phases: 3
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -24,10 +24,10 @@ See: .planning/PROJECT.md (updated 2026-05-24)
 
 ## Current Position
 
-Phase: Not started (defining requirements)
+Phase: 05 Firebase Bootstrap & Authentication
 Plan: —
-Status: Defining requirements
-Last activity: 2026-05-24 — Milestone v2.1 started
+Status: Roadmap approved; ready for phase planning
+Last activity: 2026-05-24 — Milestone roadmap created, Phase 05 is next
 
 ## Performance Metrics
 
@@ -92,4 +92,4 @@ Resume file: .planning/milestones/v2-VERIFICATION.md
 
 ## Operator Next Steps
 
-- Confirm milestone requirements, then create the milestone roadmap
+- Run `$gsd-discuss-phase 5` or `$gsd-plan-phase 5`

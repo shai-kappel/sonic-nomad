@@ -58,29 +58,29 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Pending roadmap | Pending |
-| AUTH-02 | Pending roadmap | Pending |
-| AUTH-03 | Pending roadmap | Pending |
-| AUTH-04 | Pending roadmap | Pending |
-| AUTH-05 | Pending roadmap | Pending |
-| PATH-01 | Pending roadmap | Pending |
-| PATH-02 | Pending roadmap | Pending |
-| PATH-03 | Pending roadmap | Pending |
-| PATH-04 | Pending roadmap | Pending |
-| PATH-05 | Pending roadmap | Pending |
-| PATH-06 | Pending roadmap | Pending |
-| PATH-07 | Pending roadmap | Pending |
-| SHARE-01 | Pending roadmap | Pending |
-| SHARE-02 | Pending roadmap | Pending |
-| SHARE-03 | Pending roadmap | Pending |
-| SHARE-04 | Pending roadmap | Pending |
-| SHARE-05 | Pending roadmap | Pending |
+| AUTH-01 | Phase 5 | Pending |
+| AUTH-02 | Phase 5 | Pending |
+| AUTH-03 | Phase 5 | Pending |
+| AUTH-04 | Phase 5 | Pending |
+| AUTH-05 | Phase 5 | Pending |
+| PATH-01 | Phase 6 | Pending |
+| PATH-02 | Phase 6 | Pending |
+| PATH-03 | Phase 6 | Pending |
+| PATH-04 | Phase 6 | Pending |
+| PATH-05 | Phase 6 | Pending |
+| PATH-06 | Phase 6 | Pending |
+| PATH-07 | Phase 6 | Pending |
+| SHARE-01 | Phase 7 | Pending |
+| SHARE-02 | Phase 7 | Pending |
+| SHARE-03 | Phase 7 | Pending |
+| SHARE-04 | Phase 7 | Pending |
+| SHARE-05 | Phase 7 | Pending |
 
 **Coverage:**
 - v2.1 requirements: 17 total
-- Mapped to phases: 0
-- Unmapped: 17
+- Mapped to phases: 17
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-05-24*
-*Last updated: 2026-05-24 after initial milestone scoping*
+*Last updated: 2026-05-24 after roadmap creation*

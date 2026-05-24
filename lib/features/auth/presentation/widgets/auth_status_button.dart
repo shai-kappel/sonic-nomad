@@ -16,11 +16,12 @@ class AuthStatusButton extends StatelessWidget {
         final isAuthenticated = state.isAuthenticated;
         final session = state.session;
         final photoUrl = session?.photoUrl;
-        final initial = session?.displayName != null && session!.displayName!.isNotEmpty
+        final initial =
+            session?.displayName != null && session!.displayName!.isNotEmpty
             ? session.displayName![0].toUpperCase()
             : session?.email != null && session!.email!.isNotEmpty
-                ? session.email![0].toUpperCase()
-                : '?';
+            ? session.email![0].toUpperCase()
+            : '?';
 
         return GestureDetector(
           onTap: () => AuthEntrySheet.show(context),
@@ -45,19 +46,19 @@ class AuthStatusButton extends StatelessWidget {
                       ),
                     )
                   : isAuthenticated
-                      ? Text(
-                          initial,
-                          style: const TextStyle(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        )
-                      : const Icon(
-                          Icons.person_outline,
-                          color: Colors.white,
-                          size: 20,
-                        ),
+                  ? Text(
+                      initial,
+                      style: const TextStyle(
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    )
+                  : const Icon(
+                      Icons.person_outline,
+                      color: Colors.white,
+                      size: 20,
+                    ),
             ),
           ),
         );

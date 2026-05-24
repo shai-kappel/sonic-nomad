@@ -8,11 +8,7 @@ class AuthState extends Equatable {
   final AuthSession? session;
   final String? errorMessage;
 
-  const AuthState({
-    required this.status,
-    this.session,
-    this.errorMessage,
-  });
+  const AuthState({required this.status, this.session, this.errorMessage});
 
   const AuthState.initial() : this(status: AuthStatus.initial);
 
@@ -21,10 +17,10 @@ class AuthState extends Equatable {
   const AuthState.guest() : this(status: AuthStatus.guest);
 
   const AuthState.authenticated(AuthSession session)
-      : this(status: AuthStatus.authenticated, session: session);
+    : this(status: AuthStatus.authenticated, session: session);
 
   const AuthState.failure(String message)
-      : this(status: AuthStatus.failure, errorMessage: message);
+    : this(status: AuthStatus.failure, errorMessage: message);
 
   bool get isInitial => status == AuthStatus.initial;
   bool get isLoading => status == AuthStatus.loading;

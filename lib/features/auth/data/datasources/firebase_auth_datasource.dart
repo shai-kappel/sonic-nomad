@@ -15,9 +15,9 @@ class FirebaseAuthDatasource {
     FirebaseAuth? firebaseAuth,
     GoogleSignIn? googleSignIn,
     FacebookAuth? facebookAuth,
-  })  : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn.instance,
-        _facebookAuth = facebookAuth ?? FacebookAuth.instance;
+  }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
+       _googleSignIn = googleSignIn ?? GoogleSignIn.instance,
+       _facebookAuth = facebookAuth ?? FacebookAuth.instance;
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
@@ -43,7 +43,9 @@ class FirebaseAuthDatasource {
     }
   }
 
-  Future<UserCredential> signInWithSocialProvider(SocialAuthProvider provider) async {
+  Future<UserCredential> signInWithSocialProvider(
+    SocialAuthProvider provider,
+  ) async {
     try {
       switch (provider) {
         case SocialAuthProvider.google:
@@ -61,7 +63,9 @@ class FirebaseAuthDatasource {
   Future<void> signOut() async {
     try {
       await _firebaseAuth.signOut();
-      if (!kIsWeb && (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)) {
+      if (!kIsWeb &&
+          (defaultTargetPlatform == TargetPlatform.android ||
+              defaultTargetPlatform == TargetPlatform.iOS)) {
         await _googleSignIn.signOut().catchError((_) {});
         await _facebookAuth.logOut().catchError((_) {});
       }
@@ -90,10 +94,9 @@ class FirebaseAuthDatasource {
       nonce: rawNonce,
     );
 
-    final credential = OAuthProvider('apple.com').credential(
-      idToken: appleCredential.identityToken,
-      rawNonce: rawNonce,
-    );
+    final credential = OAuthProvider(
+      'apple.com',
+    ).credential(idToken: appleCredential.identityToken, rawNonce: rawNonce);
 
     return await _firebaseAuth.signInWithCredential(credential);
   }
@@ -101,7 +104,9 @@ class FirebaseAuthDatasource {
   Future<UserCredential> _signInWithFacebook() async {
     final result = await _facebookAuth.login();
     if (result.status == LoginStatus.success) {
-      final credential = FacebookAuthProvider.credential(result.accessToken!.tokenString);
+      final credential = FacebookAuthProvider.credential(
+        result.accessToken!.tokenString,
+      );
       return await _firebaseAuth.signInWithCredential(credential);
     } else if (result.status == LoginStatus.cancelled) {
       throw FirebaseAuthException(
@@ -117,8 +122,12 @@ class FirebaseAuthDatasource {
   }
 
   String _generateNonce([int length = 32]) {
-    const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const charset =
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     final random = java_math.Random.secure();
-    return List.generate(length, (index) => charset[random.nextInt(charset.length)]).join();
+    return List.generate(
+      length,
+      (index) => charset[random.nextInt(charset.length)],
+    ).join();
   }
 }

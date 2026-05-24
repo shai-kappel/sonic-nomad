@@ -19,11 +19,11 @@ class AuthSession extends Equatable {
 
   @override
   List<Object?> get props => [
-        uid,
-        email,
-        displayName,
-        photoUrl,
-        isAnonymous,
-        providerIds,
-      ];
+    uid,
+    email,
+    displayName,
+    photoUrl,
+    isAnonymous,
+    providerIds,
+  ];
 }

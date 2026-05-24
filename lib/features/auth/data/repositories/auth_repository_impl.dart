@@ -36,7 +36,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<AuthSession> signInWithSocialProvider(SocialAuthProvider provider) async {
+  Future<AuthSession> signInWithSocialProvider(
+    SocialAuthProvider provider,
+  ) async {
     final credential = await _datasource.signInWithSocialProvider(provider);
     final user = credential.user;
     if (user == null) {

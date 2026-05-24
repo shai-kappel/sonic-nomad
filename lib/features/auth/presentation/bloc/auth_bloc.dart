@@ -23,12 +23,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required SignUpWithEmail signUpWithEmail,
     required SignInWithSocialProvider signInWithSocialProvider,
     required SignOut signOut,
-  })  : _observeAuthState = observeAuthState,
-        _signInWithEmail = signInWithEmail,
-        _signUpWithEmail = signUpWithEmail,
-        _signInWithSocialProvider = signInWithSocialProvider,
-        _signOut = signOut,
-        super(const AuthState.initial()) {
+  }) : _observeAuthState = observeAuthState,
+       _signInWithEmail = signInWithEmail,
+       _signUpWithEmail = signUpWithEmail,
+       _signInWithSocialProvider = signInWithSocialProvider,
+       _signOut = signOut,
+       super(const AuthState.initial()) {
     on<AuthSubscriptionRequested>(_onSubscriptionRequested);
     on<AuthSignUpRequested>(_onSignUpRequested);
     on<AuthSignInRequested>(_onSignInRequested);

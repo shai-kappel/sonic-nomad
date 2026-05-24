@@ -32,10 +32,7 @@ class AuthEntrySheet extends StatelessWidget {
           color: AppColors.background,
           borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
           border: Border(
-            top: BorderSide(
-              color: AppColors.outlineVariant,
-              width: 1,
-            ),
+            top: BorderSide(color: AppColors.outlineVariant, width: 1),
           ),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -102,11 +99,7 @@ class AuthEntrySheet extends StatelessWidget {
   Widget _buildLoadingContent() {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 40),
-      child: Center(
-        child: CircularProgressIndicator(
-          color: AppColors.primary,
-        ),
-      ),
+      child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
     );
   }
 
@@ -115,7 +108,8 @@ class AuthEntrySheet extends StatelessWidget {
     if (session == null) return const SizedBox.shrink();
 
     final avatarUrl = session.photoUrl;
-    final displayName = session.displayName ?? session.email ?? 'Authenticated User';
+    final displayName =
+        session.displayName ?? session.email ?? 'Authenticated User';
     final email = session.email;
 
     return Column(
@@ -130,17 +124,16 @@ class AuthEntrySheet extends StatelessWidget {
           backgroundColor: AppColors.surfaceVariant,
           backgroundImage: avatarUrl != null ? NetworkImage(avatarUrl) : null,
           child: avatarUrl == null
-              ? const Icon(
-                  Icons.person,
-                  size: 40,
-                  color: AppColors.primary,
-                )
+              ? const Icon(Icons.person, size: 40, color: AppColors.primary)
               : null,
         ),
         const SizedBox(height: 16),
         Text(
           displayName,
-          style: AppTextStyles.headlineMedium.copyWith(fontSize: 20, color: Colors.white),
+          style: AppTextStyles.headlineMedium.copyWith(
+            fontSize: 20,
+            color: Colors.white,
+          ),
         ),
         if (email != null && email != displayName) ...[
           const SizedBox(height: 4),

@@ -61,7 +61,9 @@ class SocialSignInButtons extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      onPressed: isLoading ? null : () => _onProviderTap(context, provider),
+                      onPressed: isLoading
+                          ? null
+                          : () => _onProviderTap(context, provider),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -102,11 +104,7 @@ class SocialSignInButtons extends StatelessWidget {
           size: 20,
         );
       case SocialAuthProvider.facebook:
-        return const Icon(
-          Icons.facebook,
-          color: Colors.blueAccent,
-          size: 20,
-        );
+        return const Icon(Icons.facebook, color: Colors.blueAccent, size: 20);
     }
   }
 

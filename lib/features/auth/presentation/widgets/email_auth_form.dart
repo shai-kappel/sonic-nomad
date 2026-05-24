@@ -30,18 +30,18 @@ class _EmailAuthFormState extends State<EmailAuthForm> {
     if (_formKey.currentState!.validate()) {
       if (_isSignIn) {
         context.read<AuthBloc>().add(
-              AuthSignInRequested(
-                email: _emailController.text.trim(),
-                password: _passwordController.text,
-              ),
-            );
+          AuthSignInRequested(
+            email: _emailController.text.trim(),
+            password: _passwordController.text,
+          ),
+        );
       } else {
         context.read<AuthBloc>().add(
-              AuthSignUpRequested(
-                email: _emailController.text.trim(),
-                password: _passwordController.text,
-              ),
-            );
+          AuthSignUpRequested(
+            email: _emailController.text.trim(),
+            password: _passwordController.text,
+          ),
+        );
       }
     }
   }
@@ -55,9 +55,7 @@ class _EmailAuthFormState extends State<EmailAuthForm> {
         children: [
           Text(
             _isSignIn ? 'Welcome back' : 'Create an account',
-            style: AppTextStyles.headlineMedium.copyWith(
-              color: Colors.white,
-            ),
+            style: AppTextStyles.headlineMedium.copyWith(color: Colors.white),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
@@ -66,7 +64,9 @@ class _EmailAuthFormState extends State<EmailAuthForm> {
             style: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
             decoration: InputDecoration(
               labelText: 'Email',
-              labelStyle: AppTextStyles.bodyMedium.copyWith(color: Colors.white54),
+              labelStyle: AppTextStyles.bodyMedium.copyWith(
+                color: Colors.white54,
+              ),
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: AppColors.outlineVariant),
               ),
@@ -79,7 +79,9 @@ class _EmailAuthFormState extends State<EmailAuthForm> {
               if (value == null || value.trim().isEmpty) {
                 return 'Please enter your email';
               }
-              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+              if (!RegExp(
+                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+              ).hasMatch(value)) {
                 return 'Please enter a valid email address';
               }
               return null;
@@ -92,7 +94,9 @@ class _EmailAuthFormState extends State<EmailAuthForm> {
             style: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
             decoration: InputDecoration(
               labelText: 'Password',
-              labelStyle: AppTextStyles.bodyMedium.copyWith(color: Colors.white54),
+              labelStyle: AppTextStyles.bodyMedium.copyWith(
+                color: Colors.white54,
+              ),
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: AppColors.outlineVariant),
               ),

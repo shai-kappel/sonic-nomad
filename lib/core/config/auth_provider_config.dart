@@ -1,10 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-enum SocialAuthProvider {
-  google,
-  apple,
-  facebook,
-}
+enum SocialAuthProvider { google, apple, facebook }
 
 const List<SocialAuthProvider> enabledSocialProviders = [
   SocialAuthProvider.google,
@@ -15,7 +11,7 @@ const List<SocialAuthProvider> enabledSocialProviders = [
 /// Helper class to manage authentication provider configuration.
 class AuthProviderConfig {
   /// Returns whether a specific social auth provider is visible/enabled on the current platform.
-  /// 
+  ///
   /// Asymmetric platform policy:
   /// - Google works on iOS, Android
   /// - Facebook works on iOS, Android

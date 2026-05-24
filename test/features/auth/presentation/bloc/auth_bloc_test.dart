@@ -13,9 +13,14 @@ import 'package:sonic_nomad/features/auth/presentation/bloc/auth_event.dart';
 import 'package:sonic_nomad/features/auth/presentation/bloc/auth_state.dart';
 
 class MockObserveAuthState extends Mock implements ObserveAuthState {}
+
 class MockSignInWithEmail extends Mock implements SignInWithEmail {}
+
 class MockSignUpWithEmail extends Mock implements SignUpWithEmail {}
-class MockSignInWithSocialProvider extends Mock implements SignInWithSocialProvider {}
+
+class MockSignInWithSocialProvider extends Mock
+    implements SignInWithSocialProvider {}
+
 class MockSignOut extends Mock implements SignOut {}
 
 void main() {
@@ -68,8 +73,9 @@ void main() {
   blocTest<AuthBloc, AuthState>(
     'emits guest when observe session returns null',
     build: () {
-      when(() => mockObserveAuthState.execute())
-          .thenAnswer((_) => Stream.value(null));
+      when(
+        () => mockObserveAuthState.execute(),
+      ).thenAnswer((_) => Stream.value(null));
       return bloc;
     },
     act: (bloc) => bloc.add(AuthSubscriptionRequested()),
@@ -79,8 +85,9 @@ void main() {
   blocTest<AuthBloc, AuthState>(
     'emits authenticated when observe session returns user session',
     build: () {
-      when(() => mockObserveAuthState.execute())
-          .thenAnswer((_) => Stream.value(tSession));
+      when(
+        () => mockObserveAuthState.execute(),
+      ).thenAnswer((_) => Stream.value(tSession));
       return bloc;
     },
     act: (bloc) => bloc.add(AuthSubscriptionRequested()),
@@ -90,14 +97,13 @@ void main() {
   blocTest<AuthBloc, AuthState>(
     'emits [loading] when signInWithEmail is requested',
     build: () {
-      when(() => mockSignInWithEmail.execute(any(), any()))
-          .thenAnswer((_) async => tSession);
+      when(
+        () => mockSignInWithEmail.execute(any(), any()),
+      ).thenAnswer((_) async => tSession);
       return bloc;
     },
-    act: (bloc) => bloc.add(const AuthSignInRequested(
-      email: tEmail,
-      password: tPassword,
-    )),
+    act: (bloc) =>
+        bloc.add(const AuthSignInRequested(email: tEmail, password: tPassword)),
     expect: () => [const AuthState.loading()],
     verify: (_) {
       verify(() => mockSignInWithEmail.execute(tEmail, tPassword)).called(1);
@@ -107,14 +113,13 @@ void main() {
   blocTest<AuthBloc, AuthState>(
     'emits [loading] when signUpWithEmail is requested',
     build: () {
-      when(() => mockSignUpWithEmail.execute(any(), any()))
-          .thenAnswer((_) async => tSession);
+      when(
+        () => mockSignUpWithEmail.execute(any(), any()),
+      ).thenAnswer((_) async => tSession);
       return bloc;
     },
-    act: (bloc) => bloc.add(const AuthSignUpRequested(
-      email: tEmail,
-      password: tPassword,
-    )),
+    act: (bloc) =>
+        bloc.add(const AuthSignUpRequested(email: tEmail, password: tPassword)),
     expect: () => [const AuthState.loading()],
     verify: (_) {
       verify(() => mockSignUpWithEmail.execute(tEmail, tPassword)).called(1);
@@ -124,14 +129,13 @@ void main() {
   blocTest<AuthBloc, AuthState>(
     'emits [loading, failure] when signInWithEmail throws exception',
     build: () {
-      when(() => mockSignInWithEmail.execute(any(), any()))
-          .thenThrow(Exception('Invalid credentials'));
+      when(
+        () => mockSignInWithEmail.execute(any(), any()),
+      ).thenThrow(Exception('Invalid credentials'));
       return bloc;
     },
-    act: (bloc) => bloc.add(const AuthSignInRequested(
-      email: tEmail,
-      password: tPassword,
-    )),
+    act: (bloc) =>
+        bloc.add(const AuthSignInRequested(email: tEmail, password: tPassword)),
     expect: () => [
       const AuthState.loading(),
       const AuthState.failure('Exception: Invalid credentials'),
@@ -141,18 +145,18 @@ void main() {
   blocTest<AuthBloc, AuthState>(
     'emits [loading] when social sign-in is requested',
     build: () {
-      when(() => mockSignInWithSocialProvider.execute(any()))
-          .thenAnswer((_) async => tSession);
+      when(
+        () => mockSignInWithSocialProvider.execute(any()),
+      ).thenAnswer((_) async => tSession);
       return bloc;
     },
-    act: (bloc) => bloc.add(
-      const AuthSocialSignInRequested(SocialAuthProvider.google),
-    ),
+    act: (bloc) =>
+        bloc.add(const AuthSocialSignInRequested(SocialAuthProvider.google)),
     expect: () => [const AuthState.loading()],
     verify: (_) {
-      verify(() => mockSignInWithSocialProvider.execute(
-        SocialAuthProvider.google,
-      )).called(1);
+      verify(
+        () => mockSignInWithSocialProvider.execute(SocialAuthProvider.google),
+      ).called(1);
     },
   );
 
@@ -172,9 +176,9 @@ void main() {
   blocTest<AuthBloc, AuthState>(
     'emits authenticated then guest as auth state stream changes',
     build: () {
-      when(() => mockObserveAuthState.execute()).thenAnswer(
-        (_) => Stream.fromIterable([tSession, null]),
-      );
+      when(
+        () => mockObserveAuthState.execute(),
+      ).thenAnswer((_) => Stream.fromIterable([tSession, null]));
       return bloc;
     },
     act: (bloc) => bloc.add(AuthSubscriptionRequested()),

@@ -8,9 +8,7 @@ import 'package:sonic_nomad/core/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   AppConfig.environment = Environment.dev;
   await initDependencies();
   runApp(const SonicNomadApp());

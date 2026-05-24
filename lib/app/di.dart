@@ -28,7 +28,9 @@ Future<void> initDependencies() async {
   // Services
   getIt.registerLazySingleton<MusicBrainzApi>(() => MusicBrainzApi());
   getIt.registerLazySingleton<WikidataApi>(() => WikidataApi());
-  getIt.registerLazySingleton<FirebaseAuthDatasource>(() => FirebaseAuthDatasource());
+  getIt.registerLazySingleton<FirebaseAuthDatasource>(
+    () => FirebaseAuthDatasource(),
+  );
 
   // Repositories
   getIt.registerLazySingleton<MusicBrainzRepository>(
@@ -63,9 +65,7 @@ Future<void> initDependencies() async {
   getIt.registerLazySingleton<SignInWithSocialProvider>(
     () => SignInWithSocialProvider(getIt<AuthRepository>()),
   );
-  getIt.registerLazySingleton<SignOut>(
-    () => SignOut(getIt<AuthRepository>()),
-  );
+  getIt.registerLazySingleton<SignOut>(() => SignOut(getIt<AuthRepository>()));
 
   // BLoCs
   getIt.registerFactory<MusicBrainzBloc>(

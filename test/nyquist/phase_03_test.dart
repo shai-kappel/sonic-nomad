@@ -15,7 +15,10 @@ void main() {
           final content = file.readAsStringSync();
 
           // Assert client-side rate limiting configuration
-          expect(content, contains('Duration(seconds: 1)'));
+          expect(
+            content,
+            contains(RegExp(r'Duration\s*\(\s*seconds\s*:\s*1\s*,?\s*\)')),
+          );
           expect(content, contains('_waitForSlot('));
           expect(content, contains('_processQueue('));
 

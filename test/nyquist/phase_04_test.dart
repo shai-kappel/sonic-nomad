@@ -22,7 +22,7 @@ void main() {
           // Assert client-side rate limiting configuration (min 1s interval)
           expect(
             content,
-            contains('Duration(\n        seconds: 1,\n      )'),
+            contains(RegExp(r'Duration\s*\(\s*seconds\s*:\s*1\s*,?\s*\)')),
           ); // matches format of Duration
           expect(content, contains('_waitForSlot('));
           expect(content, contains('_processQueue('));
@@ -38,7 +38,10 @@ void main() {
 
           // Assert 429 retry policy (5s delay)
           expect(content, contains('response.statusCode == 429'));
-          expect(content, contains('Duration(seconds: 5)'));
+          expect(
+            content,
+            contains(RegExp(r'Duration\s*\(\s*seconds\s*:\s*5\s*,?\s*\)')),
+          );
         },
       );
     });

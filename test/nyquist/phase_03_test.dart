@@ -33,36 +33,33 @@ void main() {
     });
 
     group('2. Clean Architecture Layer Separation:', () {
-      test('Domain layers should not import Data layers (boundary enforcement)', () {
-        final domainDir = Directory('lib/features/musicbrainz/domain');
-        expect(domainDir.existsSync(), isTrue);
+      test(
+        'Domain layers should not import Data layers (boundary enforcement)',
+        () {
+          final domainDir = Directory('lib/features/musicbrainz/domain');
+          expect(domainDir.existsSync(), isTrue);
 
-        final files = domainDir.listSync(recursive: true).whereType<File>();
-        for (final file in files) {
-          if (!file.path.endsWith('.dart')) continue;
-          final content = file.readAsStringSync();
+          final files = domainDir.listSync(recursive: true).whereType<File>();
+          for (final file in files) {
+            if (!file.path.endsWith('.dart')) continue;
+            final content = file.readAsStringSync();
 
-          // Domain should not import data sources, models, or implementations
-          expect(
-            content,
-            isNot(contains('import \'../../data')),
-            reason:
-                '${file.path} violates clean architecture by importing data layer elements.',
-          );
-          expect(
-            content,
-            isNot(contains('import \'../data')),
-            reason:
-                '${file.path} violates clean architecture by importing data layer elements.',
-          );
-          expect(
-            content,
-            isNot(contains('package:http/http.dart')),
-            reason:
-                '${file.path} violates clean architecture by importing direct HTTP package.',
-          );
-        }
-      });
+            // Domain should not import data sources, models, or implementations
+            expect(
+              content,
+              isNot(contains(RegExp(r'import\s+.*\/data\/'))),
+              reason:
+                  '${file.path} violates clean architecture by importing data layer elements.',
+            );
+            expect(
+              content,
+              isNot(contains('package:http/http.dart')),
+              reason:
+                  '${file.path} violates clean architecture by importing direct HTTP package.',
+            );
+          }
+        },
+      );
 
       test('MusicBrainzRepository should be abstract/interface in domain', () {
         final file = File(

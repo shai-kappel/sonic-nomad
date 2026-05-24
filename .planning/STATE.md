@@ -1,34 +1,33 @@
 ---
 gsd_state_version: 1.0
-milestone: v2.0
-milestone_name: Data Exploration
-status: Awaiting next milestone
-stopped_at: Milestone 2 Audit Complete
-last_updated: "2026-05-24T06:19:08.726Z"
-last_activity: 2026-05-24 — Milestone v2.0 completed and archived
+milestone: v2.1
+milestone_name: Persistence & Sharing
+status: planning
+last_updated: "2026-05-24T08:22:21.313Z"
+last_activity: 2026-05-24
 progress:
-  total_phases: 7
-  completed_phases: 4
-  total_plans: 16
-  completed_plans: 16
-  percent: 57
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-30)
+See: .planning/PROJECT.md (updated 2026-05-24)
 
 **Core value:** Users can visually explore how artists and genres connect and evolve on an interactive infinite canvas — spatial discovery, not list-based browsing.
-**Current focus:** Milestone 3 (Persistence & Sharing)
+**Current focus:** Milestone v2.1 Persistence & Sharing
 
 ## Current Position
 
-Phase: Milestone v2.0 complete
+Phase: Not started (defining requirements)
 Plan: —
-Status: Awaiting next milestone
-Last activity: 2026-05-24 — Milestone v2.0 completed and archived
+Status: Defining requirements
+Last activity: 2026-05-24 — Milestone v2.1 started
 
 ## Performance Metrics
 
@@ -93,4 +92,4 @@ Resume file: .planning/milestones/v2-VERIFICATION.md
 
 ## Operator Next Steps
 
-- Start the next milestone with /gsd-new-milestone
+- Confirm milestone requirements, then create the milestone roadmap

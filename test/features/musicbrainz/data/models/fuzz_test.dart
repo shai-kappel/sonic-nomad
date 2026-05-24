@@ -9,21 +9,31 @@ void main() {
 
     // Helper to generate a random alphanumeric string with potential special/Unicode characters
     String randomString(int length) {
-      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#\$%^&*()_+=-[]{}|;:,.<>?/\\~` 🌟日本語';
-      return List.generate(length, (index) => chars[random.nextInt(chars.length)]).join();
+      const chars =
+          'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#\$%^&*()_+=-[]{}|;:,.<>?/\\~` 🌟日本語';
+      return List.generate(
+        length,
+        (index) => chars[random.nextInt(chars.length)],
+      ).join();
     }
 
     test('Should handle malformed or highly corrupted JSON payloads safely', () {
       for (int i = 0; i < 500; i++) {
         // Build a randomized fuzzed JSON payload
         final Map<String, dynamic> fuzzedJson = {
-          'id': random.nextBool() ? (random.nextBool() ? randomString(20) : '') : null,
+          'id': random.nextBool()
+              ? (random.nextBool() ? randomString(20) : '')
+              : null,
           'name': random.nextBool() ? randomString(30) : null,
           'sort-name': random.nextBool() ? randomString(30) : null,
-          'type': random.nextBool() ? (random.nextBool() ? randomString(10) : 12345) : null, // wrong type test
+          'type': random.nextBool()
+              ? (random.nextBool() ? randomString(10) : 12345)
+              : null, // wrong type test
           'disambiguation': random.nextBool() ? randomString(50) : null,
           'country': random.nextBool() ? randomString(2) : null,
-          'score': random.nextBool() ? (random.nextBool() ? random.nextInt(100) : 'high-score') : null, // wrong type test
+          'score': random.nextBool()
+              ? (random.nextBool() ? random.nextInt(100) : 'high-score')
+              : null, // wrong type test
           'relations': random.nextBool()
               ? [
                   if (random.nextBool())
@@ -40,7 +50,7 @@ void main() {
                       'target-type': random.nextBool() ? 'artist' : null,
                     }
                   else
-                    'corrupted-relation-element'
+                    'corrupted-relation-element',
                 ]
               : null,
         };
@@ -48,7 +58,7 @@ void main() {
         try {
           // Attempt parsing
           final model = MBArtistModel.fromJson(fuzzedJson);
-          
+
           // If parsing succeeded, verify properties are correctly assigned
           expect(model.id, isA<String>());
           expect(model.name, isA<String>());
@@ -61,42 +71,45 @@ void main() {
       }
     });
 
-    test('Should parse a perfectly valid model, serialize/deserialize without data loss', () {
-      final validJson = {
-        'id': 'artist-123',
-        'name': 'The Nomad',
-        'sort-name': 'Nomad, The',
-        'type': 'Group',
-        'disambiguation': 'Alternative Rock Band',
-        'country': 'US',
-        'score': 100,
-        'relations': [
-          {
-            'type': 'member of',
-            'direction': 'forward',
-            'target-type': 'artist',
-            'artist': {
-              'id': 'artist-456',
-              'name': 'Sub Nomad',
-              'sort-name': 'Nomad, Sub',
-            }
-          }
-        ]
-      };
+    test(
+      'Should parse a perfectly valid model, serialize/deserialize without data loss',
+      () {
+        final validJson = {
+          'id': 'artist-123',
+          'name': 'The Nomad',
+          'sort-name': 'Nomad, The',
+          'type': 'Group',
+          'disambiguation': 'Alternative Rock Band',
+          'country': 'US',
+          'score': 100,
+          'relations': [
+            {
+              'type': 'member of',
+              'direction': 'forward',
+              'target-type': 'artist',
+              'artist': {
+                'id': 'artist-456',
+                'name': 'Sub Nomad',
+                'sort-name': 'Nomad, Sub',
+              },
+            },
+          ],
+        };
 
-      final model = MBArtistModel.fromJson(validJson);
-      expect(model.id, 'artist-123');
-      expect(model.name, 'The Nomad');
-      expect(model.relations?.length, 1);
-      expect(model.relations?.first.artist.name, 'Sub Nomad');
+        final model = MBArtistModel.fromJson(validJson);
+        expect(model.id, 'artist-123');
+        expect(model.name, 'The Nomad');
+        expect(model.relations?.length, 1);
+        expect(model.relations?.first.artist.name, 'Sub Nomad');
 
-      final serialized = model.toJson();
-      expect(serialized['id'], 'artist-123');
-      expect(serialized['relations']?.first['artist']['name'], 'Sub Nomad');
+        final serialized = model.toJson();
+        expect(serialized['id'], 'artist-123');
+        expect(serialized['relations']?.first['artist']['name'], 'Sub Nomad');
 
-      final entity = model.toEntity();
-      expect(entity.id, 'artist-123');
-      expect(entity.relations?.first.artist.name, 'Sub Nomad');
-    });
+        final entity = model.toEntity();
+        expect(entity.id, 'artist-123');
+        expect(entity.relations?.first.artist.name, 'Sub Nomad');
+      },
+    );
   });
 }

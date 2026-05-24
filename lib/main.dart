@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sonic_nomad/firebase_options.dart';
 import 'package:sonic_nomad/app/di.dart';
+import 'package:sonic_nomad/app/presentation/pages/app_shell_page.dart';
 import 'package:sonic_nomad/core/config/app_config.dart';
 import 'package:sonic_nomad/core/theme/app_theme.dart';
-import 'package:sonic_nomad/features/canvas/presentation/pages/canvas_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class SonicNomadApp extends StatelessWidget {
       title: AppConfig.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.dark,
-      home: const CanvasPage(),
+      home: const AppShellPage(),
     );
   }
 }

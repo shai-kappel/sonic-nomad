@@ -11,12 +11,24 @@ import '../features/wikidata/data/repositories/wikidata_repository_impl.dart';
 import '../features/wikidata/domain/repositories/wikidata_repository.dart';
 import '../features/wikidata/domain/usecases/get_macro_evolution.dart';
 
+// Auth Imports
+import '../features/auth/data/datasources/firebase_auth_datasource.dart';
+import '../features/auth/data/repositories/auth_repository_impl.dart';
+import '../features/auth/domain/repositories/auth_repository.dart';
+import '../features/auth/domain/usecases/observe_auth_state.dart';
+import '../features/auth/domain/usecases/sign_in_with_email.dart';
+import '../features/auth/domain/usecases/sign_up_with_email.dart';
+import '../features/auth/domain/usecases/sign_in_with_social_provider.dart';
+import '../features/auth/domain/usecases/sign_out.dart';
+import '../features/auth/presentation/bloc/auth_bloc.dart';
+
 final getIt = GetIt.instance;
 
 Future<void> initDependencies() async {
   // Services
   getIt.registerLazySingleton<MusicBrainzApi>(() => MusicBrainzApi());
   getIt.registerLazySingleton<WikidataApi>(() => WikidataApi());
+  getIt.registerLazySingleton<FirebaseAuthDatasource>(() => FirebaseAuthDatasource());
 
   // Repositories
   getIt.registerLazySingleton<MusicBrainzRepository>(
@@ -24,6 +36,9 @@ Future<void> initDependencies() async {
   );
   getIt.registerLazySingleton<WikidataRepository>(
     () => WikidataRepositoryImpl(api: getIt<WikidataApi>()),
+  );
+  getIt.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(getIt<FirebaseAuthDatasource>()),
   );
 
   // Usecases
@@ -36,6 +51,21 @@ Future<void> initDependencies() async {
   getIt.registerLazySingleton<GetMacroEvolution>(
     () => GetMacroEvolution(getIt<WikidataRepository>()),
   );
+  getIt.registerLazySingleton<ObserveAuthState>(
+    () => ObserveAuthState(getIt<AuthRepository>()),
+  );
+  getIt.registerLazySingleton<SignInWithEmail>(
+    () => SignInWithEmail(getIt<AuthRepository>()),
+  );
+  getIt.registerLazySingleton<SignUpWithEmail>(
+    () => SignUpWithEmail(getIt<AuthRepository>()),
+  );
+  getIt.registerLazySingleton<SignInWithSocialProvider>(
+    () => SignInWithSocialProvider(getIt<AuthRepository>()),
+  );
+  getIt.registerLazySingleton<SignOut>(
+    () => SignOut(getIt<AuthRepository>()),
+  );
 
   // BLoCs
   getIt.registerFactory<MusicBrainzBloc>(
@@ -45,6 +75,15 @@ Future<void> initDependencies() async {
     () => CanvasBloc(
       getArtistRelationships: getIt<GetArtistRelationships>(),
       getMacroEvolution: getIt<GetMacroEvolution>(),
+    ),
+  );
+  getIt.registerFactory<AuthBloc>(
+    () => AuthBloc(
+      observeAuthState: getIt<ObserveAuthState>(),
+      signInWithEmail: getIt<SignInWithEmail>(),
+      signUpWithEmail: getIt<SignUpWithEmail>(),
+      signInWithSocialProvider: getIt<SignInWithSocialProvider>(),
+      signOut: getIt<SignOut>(),
     ),
   );
 }

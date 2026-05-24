@@ -13,6 +13,7 @@ import 'package:sonic_nomad/core/theme/app_colors.dart';
 import 'package:sonic_nomad/core/theme/app_text_styles.dart';
 import 'package:sonic_nomad/core/widgets/glassmorphic_container.dart';
 import 'package:sonic_nomad/app/di.dart';
+import 'package:sonic_nomad/features/auth/presentation/widgets/auth_status_button.dart';
 
 class CanvasPage extends StatelessWidget {
   const CanvasPage({super.key});
@@ -39,6 +40,12 @@ class CanvasPage extends StatelessWidget {
               child: const Column(
                 children: [SearchBarWidget(), _SearchResultsOverlay()],
               ),
+            ),
+            // Auth Status Overlay
+            Positioned(
+              top: MediaQuery.of(context).padding.top + 12,
+              right: 16,
+              child: const AuthStatusButton(),
             ),
             // Zoom Indicator
             Positioned(

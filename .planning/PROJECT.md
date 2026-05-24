@@ -2,7 +2,7 @@
 
 ## What This Is
 
-SonicNomad is a mobile-first, open-source application that visually maps the macro-evolution of music genres and interconnected relationships between artists. Users explore a 2D node-based infinite canvas — actively building, expanding, and visualizing "connect-the-dots" music history rather than scrolling through vertical lists. It transforms dense open music web data (MusicBrainz, Wikidata) into an intuitive, visual exploration tool.
+SonicNomad is a mobile-first, open-source application that visually maps the macro-evolution of music genres and interconnected relationships between artists. Users explore a 2D node-based infinite canvas, actively building and expanding a "connect-the-dots" view of music history instead of scrolling through vertical lists. The next milestone adds account-backed persistence and sharing without compromising anonymous exploration.
 
 ## Core Value
 
@@ -18,11 +18,16 @@ Users can visually explore how artists and genres connect and evolve on an inter
   - Map-based high-performance graph state
   - Clean architecture with domain-driven entities
 
-**Next Milestone Goals:**
-- [Milestone 3: Persistence & Sharing](ROADMAP.md#milestone-3-persistence--sharing-phase-5-6)
-- Firebase project setup & Authentication
-- Discovery path serialization & Firestore persistence
-- User dashboard for "Saved Paths"
+## Current Milestone: v2.1 Persistence & Sharing
+
+**Goal:** Keep exploration frictionless for guests while adding account-backed saved-path CRUD and sharing.
+
+**Target features:**
+- Anonymous users can explore the app without creating an account, and their session is discarded when they leave.
+- Signed-in users can create, view, reopen, rename, duplicate, and delete saved discovery paths.
+- Saved discovery paths are serialized to Firestore and can be shared by link.
+- Recipients can open a shared path without signing in and save their own editable copy after authentication.
+- Firebase Authentication remains in scope, including email/password and social login.
 
 ## Requirements
 
@@ -36,8 +41,10 @@ Users can visually explore how artists and genres connect and evolve on an inter
 - [x] Strict Clean Architecture boundaries between data and domain (v2.0)
 
 ### Active
-- [ ] Save & share serialized discovery path state (graph JSON via Firestore)
-- [ ] Firebase Authentication (email/password + social login)
+- [ ] Guest exploration remains available with no account and no cross-session persistence
+- [ ] Firebase Authentication unlocks saved-path persistence and sharing
+- [ ] Signed-in users can CRUD serialized discovery paths in Firestore
+- [ ] Shared links open a path anonymously and support saving a personal copy after auth
 - [ ] $0 operating cost architecture (Firebase Spark tier, no Cloud Functions)
 
 <details>
@@ -56,6 +63,7 @@ Users can visually explore how artists and genres connect and evolve on an inter
 - Static image sharing — Sharing is serialized graph state only
 - Monetization features — Pure open-source community model
 - Heavy third-party graph libraries — Using native InteractiveViewer + CustomPaint
+- Firebase Dynamic Links — Deprecated for new projects; use platform deep links instead
 
 ## Key Decisions
 
@@ -70,6 +78,8 @@ Users can visually explore how artists and genres connect and evolve on an inter
 | Domain Entities Mapping | Strict boundary between API models and business logic | Validated (v2.0) |
 | Online-only MVP | Lightweight initial build, defer complexity | Pending |
 | Direct client API calls | Enforces $0 backend cost for open-source sustainability | Pending |
+| Guest mode stays account-free | Preserve zero-friction exploration before auth walls | Pending |
+| Standard app links over Firebase Dynamic Links | Dynamic Links are deprecated and shut down for new use | Pending |
 | git-cliff | Automated changelog generation based on conventional commits | Validated (quick) |
 
 ## Tooling
@@ -78,5 +88,22 @@ Users can visually explore how artists and genres connect and evolve on an inter
 - **Gitleaks:** Secrets detection.
 - **Trivy:** Vulnerability scanning.
 
+## Evolution
+
+This document evolves at phase transitions and milestone boundaries.
+
+**After each phase transition** (via `$gsd-transition`):
+1. Requirements invalidated? -> Move to Out of Scope with reason
+2. Requirements validated? -> Move to Validated with phase reference
+3. New requirements emerged? -> Add to Active
+4. Decisions to log? -> Add to Key Decisions
+5. "What This Is" still accurate? -> Update if drifted
+
+**After each milestone** (via `$gsd-complete-milestone`):
+1. Full review of all sections
+2. Core Value check -> still the right priority?
+3. Audit Out of Scope -> reasons still valid?
+4. Update Context with current state
+
 ---
-*Last updated: 2026-05-24 after Milestone 2 completion*
+*Last updated: 2026-05-24 after starting Milestone v2.1*

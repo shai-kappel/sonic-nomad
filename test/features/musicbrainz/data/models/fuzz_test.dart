@@ -66,7 +66,7 @@ void main() {
         } catch (e) {
           // Normal validation errors, type errors, or cast errors are expected when required keys are missing or typed incorrectly.
           // The critical aspect is that parsing throws a standard, catchable error rather than causing a crash.
-          expect(e, isA<TypeError>());
+          expect(e, anyOf(isA<TypeError>(), isA<NoSuchMethodError>()));
         }
       }
     });

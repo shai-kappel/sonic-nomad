@@ -9,9 +9,9 @@
 ### Authentication
 
 - [x] **AUTH-01**: User can launch and explore the canvas without creating an account.
-- [ ] **AUTH-02**: User can create an account with email and password.
+- [x] **AUTH-02**: User can create an account with email and password.
 - [x] **AUTH-03**: User can sign in with the milestone's configured social providers.
-- [ ] **AUTH-04**: Signed-in user session persists across app restarts on mobile until the user signs out.
+- [x] **AUTH-04**: Signed-in user session persists across app restarts on mobile until the user signs out.
 - [ ] **AUTH-05**: Guest exploration is not persisted after the user leaves the app.
 
 ### Saved Paths
@@ -59,9 +59,9 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | AUTH-01 | Phase 5 | Complete |
-| AUTH-02 | Phase 5 | Pending |
+| AUTH-02 | Phase 5 | Complete |
 | AUTH-03 | Phase 5 | Complete |
-| AUTH-04 | Phase 5 | Pending |
+| AUTH-04 | Phase 5 | Complete |
 | AUTH-05 | Phase 5 | Pending |
 | PATH-01 | Phase 6 | Pending |
 | PATH-02 | Phase 6 | Pending |

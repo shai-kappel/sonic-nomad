@@ -1,9 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sonic_nomad/features/wikidata/data/datasources/wikidata_api.dart';
-import 'package:sonic_nomad/features/wikidata/domain/models/genre.dart';
-import 'package:sonic_nomad/features/wikidata/domain/repositories/wikidata_repository.dart';
 import 'package:sonic_nomad/core/metrics/graph_layout_engine.dart';
 
 void main() {

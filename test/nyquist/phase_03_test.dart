@@ -1,10 +1,5 @@
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sonic_nomad/features/musicbrainz/data/datasources/musicbrainz_api.dart';
-import 'package:sonic_nomad/features/musicbrainz/data/models/mb_artist_model.dart';
-import 'package:sonic_nomad/features/musicbrainz/data/models/mb_relation_model.dart';
-import 'package:sonic_nomad/features/musicbrainz/domain/entities/artist.dart';
-import 'package:sonic_nomad/features/musicbrainz/domain/repositories/musicbrainz_repository.dart';
 
 void main() {
   group('Phase 03 Nyquist Validation:', () {

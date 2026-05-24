@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sonic_nomad/features/musicbrainz/data/models/mb_artist_model.dart';
-import 'package:sonic_nomad/features/musicbrainz/data/models/mb_relation_model.dart';
 
 void main() {
   group('MBArtistModel Parsing Robustness (Fuzz Test)', () {

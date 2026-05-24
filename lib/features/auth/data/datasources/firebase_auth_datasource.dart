@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -75,6 +77,7 @@ class FirebaseAuthDatasource {
   }
 
   Future<UserCredential> _signInWithGoogle() async {
+    await _googleSignIn.initialize();
     final googleUser = await _googleSignIn.authenticate();
     final googleAuth = googleUser.authentication;
     final credential = GoogleAuthProvider.credential(
@@ -86,12 +89,14 @@ class FirebaseAuthDatasource {
 
   Future<UserCredential> _signInWithApple() async {
     final rawNonce = _generateNonce();
+    final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
+
     final appleCredential = await SignInWithApple.getAppleIDCredential(
       scopes: [
         AppleIDAuthorizationScopes.email,
         AppleIDAuthorizationScopes.fullName,
       ],
-      nonce: rawNonce,
+      nonce: hashedNonce,
     );
 
     final credential = OAuthProvider(

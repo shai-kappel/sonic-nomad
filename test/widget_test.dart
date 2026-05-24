@@ -2,8 +2,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sonic_nomad/main.dart';
 import 'package:sonic_nomad/features/canvas/presentation/pages/canvas_page.dart';
 import 'package:sonic_nomad/core/config/app_config.dart';
+import 'package:sonic_nomad/app/di.dart';
 
 void main() {
+  setUp(() async {
+    await getIt.reset();
+    await initDependencies();
+  });
+
   testWidgets('Smoke test: app launches and shows CanvasPage', (
     WidgetTester tester,
   ) async {

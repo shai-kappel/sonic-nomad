@@ -10,36 +10,41 @@ Users can visually explore how artists and genres connect and evolve on an inter
 
 ## Current State
 
-**Shipped:** [Milestone 1: Foundation & Canvas](.planning/milestones/v1-ROADMAP.md) (v1.0)
-- Interactive 100-node canvas (60fps)
-- Nebula Ethereal design system
-- Automated CI/CD & Security pipeline
+**Shipped:** 
+- [Milestone 1: Foundation & Canvas](.planning/milestones/v1-ROADMAP.md) (v1.0)
+- [Milestone 2: Data Exploration](.planning/milestones/v2.0-ROADMAP.md) (v2.0)
+  - Live MusicBrainz & Wikidata SPARQL integration
+  - Dynamic artist/genre relationship expansion
+  - Map-based high-performance graph state
+  - Clean architecture with domain-driven entities
 
 **Next Milestone Goals:**
-- [Milestone 2: Data Exploration](.planning/ROADMAP.md#milestone-2-data-exploration-phase-3-4)
-- Live MusicBrainz integration
-- Artist search & relationship expansion
-- Genre cluster visualization via Wikidata
+- [Milestone 3: Persistence & Sharing](ROADMAP.md#milestone-3-persistence--sharing-phase-5-6)
+- Firebase project setup & Authentication
+- Discovery path serialization & Firestore persistence
+- User dashboard for "Saved Paths"
 
 ## Requirements
 
-### Validated
+## Validated
 - [x] Interactive infinite canvas (pan, zoom) with artist nodes and bezier curve edges (v1.0)
 - [x] 60fps performance with 100+ nodes (v1.0)
 - [x] Glassmorphic Nebula Ethereal aesthetic (v1.0)
+- [x] Dynamic search for a seed artist with immediate network expansion (v2.0)
+- [x] Genre evolution mapping showing macro-level genre relationships (v2.0)
+- [x] Direct client-side API calls to MusicBrainz and Wikidata (v2.0)
+- [x] Strict Clean Architecture boundaries between data and domain (v2.0)
 
 ### Active
-- [ ] Dynamic search for a seed artist with immediate network expansion
-- [ ] Genre evolution mapping showing macro-level genre relationships
 - [ ] Save & share serialized discovery path state (graph JSON via Firestore)
 - [ ] Firebase Authentication (email/password + social login)
-- [ ] Direct client-side API calls to MusicBrainz and Wikidata (no backend proxy)
 - [ ] $0 operating cost architecture (Firebase Spark tier, no Cloud Functions)
 
 <details>
-<summary>Archived Milestone 1 Requirements</summary>
+<summary>Archived Milestone Requirements</summary>
 
-See: [.planning/milestones/v1-REQUIREMENTS.md](.planning/milestones/v1-REQUIREMENTS.md)
+- [Milestone 1 Requirements](.planning/milestones/v1-REQUIREMENTS.md)
+- [Milestone 2 Requirements](.planning/milestones/v2.0-REQUIREMENTS.md)
 </details>
 
 ## Out of Scope
@@ -60,8 +65,18 @@ See: [.planning/milestones/v1-REQUIREMENTS.md](.planning/milestones/v1-REQUIREME
 | RepaintBoundary Isolation | Maintain 60fps by caching static background/edge layers | Validated (v1.0) |
 | Map-based Painter Lookups | O(1) performance for edge drawing | Validated (v1.0) |
 | Gitleaks & Trivy in CI | Early detection of secrets and vulnerabilities | Validated (v1.0) |
+| Map-based Graph State | Efficient node deduplication and graph traversal | Validated (v2.0) |
+| SPARQL direct query | Flexible hierarchical data extraction without backend | Validated (v2.0) |
+| Domain Entities Mapping | Strict boundary between API models and business logic | Validated (v2.0) |
 | Online-only MVP | Lightweight initial build, defer complexity | Pending |
 | Direct client API calls | Enforces $0 backend cost for open-source sustainability | Pending |
+| git-cliff | Automated changelog generation based on conventional commits | Validated (quick) |
+
+## Tooling
+
+- **git-cliff:** Used for automated changelog generation. Configuration in `cliff.toml`. Helper script at `scripts/generate-changelog.sh`.
+- **Gitleaks:** Secrets detection.
+- **Trivy:** Vulnerability scanning.
 
 ---
-*Last updated: 2026-03-30 after Milestone 1 completion*
+*Last updated: 2026-05-24 after Milestone 2 completion*

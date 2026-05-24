@@ -45,5 +45,28 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1234567890-mock</string>
+				<string>fb123456789012345</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>123456789012345</string>
+	<key>FacebookClientToken</key>
+	<string>mock_client_token_123456</string>
+	<key>FacebookDisplayName</key>
+	<string>SonicNomad</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 </dict>
 </plist>

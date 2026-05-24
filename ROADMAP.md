@@ -7,7 +7,7 @@
 **Goal:** User accounts and the ability to save/share discovery paths.
 
 ### Phase 5: Firebase Integration
-- [ ] Set up Firebase project and auth (Google, Apple, GitHub).
+- [ ] Set up Firebase project and auth (Google, Apple, Facebook).
 - [ ] Save graph state as serialized JSON to Firestore.
 - [ ] User dashboard for "Saved Paths."
 
@@ -25,4 +25,4 @@
 - [ ] Prepare deployment metadata.
 
 ---
-*Last updated: 2026-04-04*
+*Last updated: 2026-05-24*
